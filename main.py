@@ -6,16 +6,16 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap5
+from dotenv import load_dotenv
 import os
 
-
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ASKDLJFLASJFDLJ'
 
-os.makedirs('instance', exist_ok=True)
-base_dir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(base_dir, "instance", "data.db")}'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 
 bootstrap = Bootstrap5(app)
 
