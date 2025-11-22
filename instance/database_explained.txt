@@ -1,0 +1,47 @@
+SQLite vs PostgreSQL: What You Need to Know
+===========================================
+
+SQLite
+------
+- SQLite is a file-based database. All your data is stored in a single file (e.g., instance/users.db).
+- Strength: Easy to set up, great for development and debugging. You can open the file with a DB viewer and inspect your data.
+- Weakness: Not suitable for production hosting. On platforms like Heroku or Render, the file location can change or be wiped every 24 hours, causing data loss.
+- Use SQLite for local development and testing only.
+
+PostgreSQL
+----------
+- PostgreSQL is a powerful, server-based relational database. It can handle millions of records and is reliable for production use.
+- Data is stored on a managed server, not in a local file. This means your data is safe and persistent.
+- Most hosting providers (Heroku, Render, etc.) recommend PostgreSQL for production apps.
+
+PostgreSQL and psycopg
+----------------------
+- PostgreSQL is a database system, like SQLite, but designed for reliability, scalability, and multi-user access.
+- You can interact with PostgreSQL using SQL commands, just like SQLite.
+- The main difference: PostgreSQL stores data on a server (local or remote), while SQLite stores data in a local file.
+- The 'psycopg' package is a database adapter (driver) that lets your Python app connect to PostgreSQL servers and execute SQL commands.
+- SQLAlchemy is an ORM (Object Relational Mapper) that lets you write Python code to interact with databases, and it generates SQL queries for you.
+- When you use SQLAlchemy with psycopg, SQLAlchemy builds the SQL commands and psycopg sends those commands to the PostgreSQL server and returns results.
+- You can switch from SQLite to PostgreSQL by just changing the database URI—no need to change your code if you use SQLAlchemy.
+
+Why Companies Pay for Managed Databases
+---------------------------------------
+- Companies pay cloud providers (like AWS, Heroku, Render) to host databases because:
+  - They want reliable, secure, and scalable data storage.
+  - Providers handle backups, updates, and hardware failures.
+  - Data is always available to users, even if traffic increases.
+- For experiments and learning, SQLite is fine. For real apps and businesses, managed databases like PostgreSQL are essential.
+
+Summary
+-------
+- Use SQLite for development, PostgreSQL for production.
+- Update your database URI and requirements.txt for deployment.
+- SQLAlchemy and psycopg make switching databases seamless.
+- SQLite: simple, file-based, good for development.
+- PostgreSQL: server-based, reliable, good for production.
+- SQLAlchemy: generates SQL from Python code.
+- psycopg: connects Python to PostgreSQL and executes SQL.
+- Companies pay for managed databases to ensure data safety and reliability for their users.
+
+For more info, see:
+https://blog-deployment.onrender.com/
